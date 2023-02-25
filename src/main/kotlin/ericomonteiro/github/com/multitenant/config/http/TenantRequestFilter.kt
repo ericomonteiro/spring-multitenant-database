@@ -1,4 +1,4 @@
-package ericomonteiro.github.com.multitenant.config
+package ericomonteiro.github.com.multitenant.config.http
 
 import ericomonteiro.github.com.multitenant.config.TenantContext.currentTenant
 import jakarta.servlet.Filter

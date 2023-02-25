@@ -1,4 +1,4 @@
-package ericomonteiro.github.com.multitenant.config
+package ericomonteiro.github.com.multitenant.config.datasource
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.context.properties.ConfigurationProperties

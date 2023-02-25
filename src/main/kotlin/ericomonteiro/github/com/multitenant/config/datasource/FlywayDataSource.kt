@@ -1,4 +1,4 @@
-package ericomonteiro.github.com.multitenant.config
+package ericomonteiro.github.com.multitenant.config.datasource
 
 import jakarta.annotation.PostConstruct
 import org.flywaydb.core.Flyway
