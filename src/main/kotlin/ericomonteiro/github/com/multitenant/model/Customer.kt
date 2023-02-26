@@ -9,5 +9,6 @@ class Customer (
     @Id @Column(length = 36)
     val id: String,
 
-    val name: String
+    val name: String,
+    val email: String
 )

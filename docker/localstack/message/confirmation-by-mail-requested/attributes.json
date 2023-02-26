@@ -1,0 +1,6 @@
+{
+  "X-TenantID": {
+    "DataType": "String",
+    "StringValue": "tenant-a"
+  }
+}

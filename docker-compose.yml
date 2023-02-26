@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.7'
 
 services:
   postgres:
@@ -46,6 +46,19 @@ services:
       - "9000:9000"
     environment:
       KAFKA_BROKERCONNECT: kafka:29092
+
+  aws:
+    image: 'localstack/localstack'
+    environment:
+      - SERVICES=sqs
+      - DEFAULT_REGION=us-east-1
+      - AWS_DEFAULT_REGION=us-east-1
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - ./docker/localstack:/docker-entrypoint-initaws.d
+    ports:
+      - '4566:4566'
 
 networks:
   broker-kafka:
