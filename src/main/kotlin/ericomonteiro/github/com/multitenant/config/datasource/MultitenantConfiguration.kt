@@ -15,31 +15,26 @@ import javax.sql.DataSource
 
 
 @Configuration
-class MultitenantConfiguration {
-    @Value("\${defaultTenant}")
-    private val defaultTenant: String? = null
+class MultitenantConfiguration(
+    private val dataSourceConfig: DataSourceConfig
+) {
     @Bean
-    @ConfigurationProperties(prefix = "tenants")
     fun dataSource(): DataSource {
-        val files: Array<File> = Paths.get("all-tenants").toFile().listFiles() as Array<File>
         val resolvedDataSources: MutableMap<Any?, Any> = HashMap()
-        for (propertyFile in files) {
-            val tenantProperties = Properties()
+        dataSourceConfig.datasource.forEach { tenant ->
+            val tenantProperties = tenant.value
             val dataSourceBuilder = DataSourceBuilder.create()
-            try {
-                tenantProperties.load(FileInputStream(propertyFile))
-                val tenantId: String = tenantProperties.getProperty("name")
-                dataSourceBuilder.driverClassName(tenantProperties.getProperty("datasource.driver-class-name"))
-                dataSourceBuilder.username(tenantProperties.getProperty("datasource.username"))
-                dataSourceBuilder.password(tenantProperties.getProperty("datasource.password"))
-                dataSourceBuilder.url(tenantProperties.getProperty("datasource.url"))
-                resolvedDataSources[tenantId] = dataSourceBuilder.build()
-            } catch (exp: IOException) {
-                throw RuntimeException("Problem in tenant datasource:$exp")
-            }
+            val tenantId: String = tenant.key
+
+            dataSourceBuilder.driverClassName(tenantProperties.driver)
+            dataSourceBuilder.username(tenantProperties.username)
+            dataSourceBuilder.password(tenantProperties.password)
+            dataSourceBuilder.url(tenantProperties.url)
+            resolvedDataSources[tenantId] = dataSourceBuilder.build()
         }
+
         val dataSource: AbstractRoutingDataSource = MultitenantDataSource()
-        dataSource.setDefaultTargetDataSource(resolvedDataSources[defaultTenant]!!)
+        dataSource.setDefaultTargetDataSource(resolvedDataSources[dataSourceConfig.default]!!)
         dataSource.setTargetDataSources(resolvedDataSources)
         dataSource.afterPropertiesSet()
         return dataSource

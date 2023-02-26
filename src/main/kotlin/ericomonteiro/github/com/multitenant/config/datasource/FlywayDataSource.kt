@@ -14,7 +14,6 @@ class FlywayDataSource(
     fun migrateFlyway() {
         dataSource as MultitenantDataSource
         dataSource.resolvedDataSources.forEach {
-            println(it)
             Flyway.configure()
                 .dataSource( it.value)
                 .locations("db/migration")
