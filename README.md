@@ -28,8 +28,8 @@ this command will start
 in this file there are three requests
 <ul>
     <li>[GET] - /home/tenants - show the tenants configuration</li>
-    <li>[GET] - /customer/{id}</li>
-    <li>[POST] - /customer</li>
+    <li>[GET] - /customer/{id} - get customer by id</li>
+    <li>[POST] - /customer - create customer</li>
 </ul>
 
 To execute the use case showed in sequence diagram use the POST request
