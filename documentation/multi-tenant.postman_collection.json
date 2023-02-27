@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "b43322b0-1919-4a99-890b-c6699c3450bb",
+		"name": "multi tenant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4201988"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/home/tenants",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-TenantID",
+						"value": "tenant-a",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/home/tenants",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"home",
+						"tenants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/customer/?",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-TenantID",
+						"value": "tenant-b",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/customer/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-TenantID",
+						"value": "tenant-b",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"1\",\r\n    \"name\": \"Érico Cintra Monteiro\",\r\n    \"email\": \"tenantb.erico@gmail.com\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

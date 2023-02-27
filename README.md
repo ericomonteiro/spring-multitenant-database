@@ -6,6 +6,9 @@ and propagate the tenant information in requests and messages using Kafka and SQ
 ### Solutions Architecture
 <img src="./documentation/solution-architecture.drawio.png">
 
+### Use case sequence of this demo application
+<img src="./documentation/create-customer-usecase-sequence.svg">
+
 ### Docker
 In the docker-compose file there is all that you need to run in local environment.
 ```
