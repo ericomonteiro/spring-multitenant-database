@@ -53,3 +53,10 @@ awslocal sqs send-message \
  --message-body file://docker/localstack/message/confirmation-by-mail-requested/body.json \
  --message-attributes file://docker/localstack/message/confirmation-by-mail-requested/attributes.json
 ```
+
+### Documentation
+#### All documentation resources is [here](documentation)
+
+Used tools to create diagrams (exported images are editable):  
+https://app.diagrams.net/  
+https://sequencediagram.org/
