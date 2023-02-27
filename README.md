@@ -22,7 +22,20 @@ this command will start
     <li>localstack</li>
 </ul>
 
+### Postman Collection
+#### You can find postman collection
+[here](documentation/multi-tenant.postman_collection.json)
+in this file there are three request
+<ul>
+    <li>[GET] - /home/tenants - show the tenants configuration</li>
+    <li>[GET] - /customer/{id}</li>
+    <li>[POST] - /customer</li>
+</ul>
+
+To execute the use case showed in sequence diagram use the POST request
+
 ### AWS Local Stack
+#### optional steps - only necessary if you want send message to sqs by command line
 Install awscli-local
 ```
 pip3 install awscli-local
